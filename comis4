@@ -1,0 +1,9 @@
+public static void main(String[] args) { //Inicio y Argumentación del Main
+        Producto miProducto = new Producto();
+        miProducto.setNombre(JOptionPane.showInputDialog("Digite el Nombre del Producto que Realizarán las Máquinas: "));
+        JOptionPane.showMessageDialog(null, "El nombre del producto es: "+miProducto.getNombre());
+        //Solicitud del Precio del Producto a Crear:
+        miProducto.setPrecio(Double.parseDouble(JOptionPane.showInputDialog("Digite el Precio de Venta del Producto que se Creará: ¢")));
+        JOptionPane.showMessageDialog(null, "El precio es: "+miProducto.getPrecio());
+        Menu1 men = new Menu1();
+        men.MenuPri();
