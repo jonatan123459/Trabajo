@@ -1,0 +1,77 @@
+   int tiempoMaximoReparacion1 = 1; //Se encarga de reparar la maquina 1 cuando se cumple su tiempo.
+        int tiempoMaximoReparacion2 = 1; //Se encarga de reparar la maquina 2 cuando se cumple su tiempo.
+        int cont = 1; //Contador de las horas, cada ciclo representa 1 hora
+        int contDias = 1; //Contador de los días, cada ciclo representa 1 día
+        int contSemanas = 1; //Contador de las semanas, cada ciclo representa 1 nes
+        int contMeses = 1; //Contador de los meses, cada ciclo representa 1 mes
+        int contAnos = 1; //Contador de los años, cada ciclo representa 1 año
+        double producidos1 = 0, producidos2 = 0; //Valor de las Producciones por máquina
+        int horas2=Integer.parseInt(JOptionPane.showInputDialog("ingrese las horas"));
+        for (int i = 0; i <horas2 ; i++) {
+               
+            //Generacion de la posible falla:
+            if (miMaquina1.randomFalla() > miMaquina1.getFalla()) {
+                miMaquina1.setEstado(false);
+                tiempoMaximoReparacion1++;
+                System.out.println("hubo una falla a esta hora de maquina 1");
+                
+            } else {
+                miMaquina1.setEstado(true);
+                producidos1= +1; 
+                System.out.println("maquina 1 produjo a esta hora");
+            }
+            if (miMaquina2.randomFalla() > miMaquina2.getFalla()) {
+                miMaquina2.setEstado(false); 
+                tiempoMaximoReparacion2++;
+                System.out.println("hubo una falla a esta hora de maquina 2");
+            } else { //De lo Contrario...
+                miMaquina2.setEstado(true); //Máquina en Estado "true"
+                producidos2=+2;
+                System.out.println("maquina 2 produjo a esta hora");
+            }
+            if (miMaquina1.getEstado() == false) {
+                producidos1 = producidos1 + 0;
+                System.out.println("maquina 1 fallo");
+            }
+            if (miMaquina2.getEstado() == false) {
+                producidos2 = producidos2 + 0;
+                System.out.println("maquina 2 fallo");
+            }
+            
+            //Reparacion de la Maquina por medio del Tiempo Máximo de Reparacion:
+            
+            if (tiempoMaximoReparacion1 >= miMaquina1.getTiempoReparacion()) {
+                miMaquina1.setEstado(true);
+            }
+            if (tiempoMaximoReparacion2 >= miMaquina2.getTiempoReparacion()) {
+                miMaquina2.setEstado(true);
+            }
+            
+            /*
+             *Aquí se Genera la Producción de los Productos
+             */
+            
+            if (miMaquina1.getEstado() == true) {
+                producidos1 = producidos1 + miMaquina1.getProduccionHora();
+            }
+            if (miMaquina2.getEstado() == true) {
+                producidos2 = producidos2 + miMaquina2.getProduccionHora();
+            }
+            
+            /*
+             * Incremento de los respectivos contadores...
+             * Funciona de Forma Dinámica con los valores dados por el usuario y la vida real;
+             * devuelve la produccion realizada...
+             */
+            
+            cont++; //Aumento del Contador
+            
+          
+            }
+
+        //while ((this.horasPorDia >= cont && (this.diasPorSemana >= contDias) && (this.semanasPorMes >= contSemanas) && (this.mesesPorAño >= contMeses))); //Condición del Ciclo
+       
+        return ("Los Productos Producidos Por la Máquina "+ miMaquina1.getID()+" fueron "+miMaquina1.getProduccionHora()+'\n'+" y "+'\n'+"Los Productos Producidos por la Máquina "+miMaquina2.getID()+" fueron "+miMaquina2.getProduccionHora()); //Retorno de los Resultados Obtenidos en Ambas Máquinas
+    }//Fin del Método que despliega los resultados de la Simulación 
+    
+} //Fin de la Clase "Simulación"
